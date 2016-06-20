@@ -11,7 +11,6 @@ import java.util.List;
 
 @Component
 public class Nyse {
-    //private List<String> nyseCompanyList;
 
     public void getNyseStockInfo(){
 
