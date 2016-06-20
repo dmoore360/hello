@@ -1,0 +1,53 @@
+buildscript {
+
+    repositories {
+        maven {
+            url "http://repo1.maven.org/maven2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    baseName = 'spa'
+    version =  '0.1.0'
+}
+
+repositories {
+    maven {
+        url "http://repo1.maven.org/maven2/"
+    }
+}
+
+allprojects {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+dependencies {
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    testCompile("junit:junit")
+    // tag::jackson[]
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    // end::jackson[]
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
