@@ -16,7 +16,7 @@ apply plugin: 'spring-boot'
 
 //noinspection GroovyAssignabilityCheck
 jar {
-    baseName = 'spa'
+    baseName = 'hello'
     version =  '0.1.0'
 }
 
